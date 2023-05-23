@@ -1,4 +1,4 @@
-name: Build x86_64_5.10
+name: Build x86_64_5.15
 
 on:
   repository_dispatch:
@@ -13,7 +13,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: x86_64.config
   DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2_5.10.sh
+  DIY_P2_SH: diy-part2_5.15.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [x86_64_5.10]
+        target: [x86_64_5.15]
 
     steps:
     - name: 检查
@@ -120,7 +120,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         cd bin/targets/x86/64/
-        rename -v 's/^/${{ env.date1 }}-5.10-/' openwrt*.gz || true
+        rename -v 's/^/${{ env.date1 }}-5.15-/' openwrt*.gz || true
 
     - name: 整理文件
       id: organize
